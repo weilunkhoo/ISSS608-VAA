@@ -1,0 +1,160 @@
+---
+title: "Take-home Exercise 1"
+description: Creating data visualisation beyond default
+author: Khoo Wei Lun
+date: "`r Sys.Date()`"
+toc: true
+toc-location: left
+tbl-colwidths: [6,47,47]
+---
+
+# 1. Overview
+
+------------------------------------------------------------------------
+
+Age-sex pyramid, also known as population pyramid, is an analytical visualization commonly used to reveal the distribution of a population by age group and gender. This take-home exercise aims to reveal the demographic structure in nine selected planning area of Singapore by using the population pyramid charts.
+
+The dataset containing the demographics of Singapore residents for June 2022 was obtained from [Department of Statistics](https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data). The data was then imported into Tableau desktop for data processing and visualisation.
+
+# 2. Design Sketch
+
+------------------------------------------------------------------------
+
+![](images/Design%20Sketch.jpg){width="500"}
+
+# 3. Data Wrangling
+
+------------------------------------------------------------------------
+
+**3.1 Re-group AG into AG (10years)**
+
+From the age group distribution in Singapore population, it can be observed that there is a big number of 19 bins where each bin covers an age range of 5 years. The bins may become narrow or compressed when fitted into a small-multiple plot which makes identifying of meaningful patterns challenging. Therefore, we re-group the age groups to cover a range of 10years to reduce the number of bins displayed.
+
+![](images/image-181116156.png){width="600"}
+
+**3.2 Creating male and female population variables**
+
+A single population pyramid is made by two age group distributions for both genders in a population. The dataset used currently combines the population for both genders. Hence, two new variables ('Male Pop' & 'Female Pop') are created using 'Calcuated Field' to represent either male or female populations only.
+
+![](images/image-187105855.png){width="600"}
+
+# 4. Population Pyramid
+
+------------------------------------------------------------------------
+
+**4.1 Selection of 9 planning areas**
+
+In this exercise, we will be studying the demographics structure in 9 planning areas with the largest populations. Large populations are chosen to ensure that we can cover as many Singaporean residents as possible for the study. We can identify these areas using the population distribution by planning areas below.
+
+![](images/9%20Planning%20Area.png){width="600"}
+
+**4.2 Final visualization**
+
+The 9 population pyramids are displayed in a single view using trellis display as shown below. This chart is also published on [Tableau Public](https://public.tableau.com/views/SingaporePopulationPyramidsJune2022/DashboardTrellis?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link).
+
+![](images/Dashboard%20(Trellis).png)
+
+# 5. Observations
+
+------------------------------------------------------------------------
+
+The following are observations revealed by the above analytical visualization:
+
+1.  All nine areas have narrower base compared to the body (30 to 49 age groups) showing smaller number of children than working adults.
+
+2.  All nine areas have equal proportion of young boys and young girls (0 to 9 age group).
+
+3.  Obvious bulges at 30 to 49 age groups in Punggol and Sengkang shows migration of working adults into these two planning areas.
+
+4.  Females had a longer life expectancy than males in these areas as the female population are larger than male population for age group above 80 years old.
+
+5.  
+
+6.  
+
+7.  Punggol and Sengkang have the large number of young children among the nine planning areas.
+
+# 6. Worksheet vs Dashboard
+
+------------------------------------------------------------------------
+
+We can build a trellis display for nine population pyramids using multiple worksheets and compile into a dashboard (as shown above) or using a single worksheet (as shown below).
+
+![](images/image-233378727.png){width="695"}We will compare some advantages and disadvantages of each method.
+
+**Trellis display (horizontal) in Worksheet**\
+[Advantages:]{.underline}\
+i) Less steps required to build and has automated chart fitting and labeling.\
+ii) Easier to compare across the same age groups.\
+[Disadvantages:]{.underline}\
+i) Requires several additional fields and complex equations to build a 3x3 grid.\
+ii) Pyramids are compressed to fit into the same display and could be misleading.
+
+**Trellis display in Dashboard**\
+[Advantages:]{.underline}\
+i) Larger space for each pyramids so they are not compressed.\
+ii) Able to custom layout to desired design without any coding.\
+[Disadvantages:]{.underline}\
+i) Multiple worksheet adjustments are required for any changes to the pyramids.
+
+After considering the pros and cons, trellis display in Dashboard is better suited for this exercise.
+
+# 7. Step-by-Step Instructions
+
+------------------------------------------------------------------------
+
+**6.1 Data preparation**
+
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+| No.   | Step                                                                                                                                                                                                                                        | Illustration          |
++=======+=============================================================================================================================================================================================================================================+=======================+
+| 1\.   | Download csv file from Singstat website given in Section 1. Load the respopagesextod2022.csv file into Tableau Desktop by clicking 'File' followed by 'Open'.                                                                               | ![](images/Step1.png) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+| 2\.   | Click on the drop-down arrow for 'AG', hover over 'Create' and click on 'Group'. Create age groups in interval of 10 by grouping a pair of age groups with 5 years interval. Type 'AG (10years)' in 'Field Name' when new grouping is done. | ![](images/Step2.png) |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+| 3\.   | Go to 'Analysis' and click on 'Create Calculated Field'. Overwrite 'Calculation1' with 'Male Pop' and typed in the following formula: IF \[Sex\] = "Males" THEN \[Pop\] END                                                                 | ![](images/Step3.png) |
+|       |                                                                                                                                                                                                                                             |                       |
+|       | Repeat this step for 'Female Pop' with the following formula: IF \[Sex\] = "Females" THEN \[Pop\] END                                                                                                                                       |                       |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+
+**6.2 Creating population pyramids for 9 planning areas in [dashboard]{.underline}**
+
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| No.    | Step                                                                                                                                                                                                                                         | Illustration                     |
++========+==============================================================================================================================================================================================================================================+==================================+
+| 1\.    | Create a new worksheet 'Pyramid (3Top)'. Click and drag 'PA', 'Male Pop' & 'Female Pop' from Data pane to Columns. Add 'AG(10yrs)' to Rows. Ensure summation of 'Male Pop' and 'Female Pop' are added.                                       | ![](images/Step1_Dashboard.png)  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| 2\.    | Click the dropdown arrow on PA beside 'Columns' and select 'Filter'. Uncheck all except the 3 selected planning area. Click 'Ok' once done.                                                                                                  | ![](images/image-1777659684.png) |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Hide field label for row 'AG (10yrs) and column 'PA'.                                                                                                                                                                                        |                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| 3\.    | Hover over AG(10yrs) on the chart. Click on the 'AZ' icon and sort the rows in descending order (0 to 9 at the bottom & 90 and over at the top)                                                                                              | ![](images/Step3_Dashboard.png)  |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Right-click on one of the 'Male Pop' x-axis and select 'Edit Axis'. Under Range, select 'Fixed' and set 0 as min and 30,000 as max. Under Scale, checked 'Reversed'. Under Axis Titles, remove the title 'Male Pop'. Close window once done. |                                  |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Right-click on one of the 'Female Pop' x-axis. Repeat the same steps as above for Range and Axis Titles only.                                                                                                                                |                                  |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Under 'Marks', click on 'Color' under 'Sum(Female Pop)' ribbon. Select pink color to represent female population.                                                                                                                            |                                  |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Select 'Entire View' under 'Fit'. Your diagram should look similar to the diagram on the right.                                                                                                                                              |                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| 4\.    | Duplicate 'Pyramid (3Top)' and renamed worksheets as 'Pyramid (3Mid)' and 'Pyramid (3Btm)'. In new workshops, update 'PA' filter such that the remaining 6 planning areas are all included.                                                  | ![](images/Step4_Dashboard.png)  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| 5\.    | Click on 'New Dashboard' at the bottom and rename it as 'Dashboard (Trellis)'.                                                                                                                                                               | ![](images/Step5_Dashboard.png)  |
+|        |                                                                                                                                                                                                                                              |                                  |
+|        | Use floating objects and create a placeholders as shown in the diagram on the right.                                                                                                                                                         |                                  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+| 6\.    | Hold down shift and drag 'Pyramid(3Top)', 'Pyramid (3Mid)' and 'Pyramid (3Btm)' into the respective placeholders. Update the chart title and axis titles accordingly. The final diagram should look like the one on the right.               | ![](images/Step6_Dashboard.png)  |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+
+
+**6.3 Creating population pyramids for 9 planning areas in a [single worksheet]{.underline}**
+
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+
+| No.      | Step                                                                                                                                                      | Illustration                    |
++==========+===========================================================================================================================================================+=================================+
+| 1\.      | Create a new worksheet 'Worksheet (Trellis)'. Click and drag 'PA', 'Male Pop' & 'Female Pop' from Data pane to Columns. Add 'AG(10yrs)' to Rows.          | ![](images/image-757060270.png) |
+|          |                                                                                                                                                           |                                 |
+|          | Click the dropdown arrow on PA beside 'Columns' and select 'Filter'. Uncheck all except the [9]{.underline} selected planning area. Click 'Ok' once done. |                                 |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+
+| 2\.      | Repeat the same step as Section 6.2 Step 3, except use 'Fit Width'. The diagram should look like the one on the right.                                    | ![](images/Step2_Worksheet.png) |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------+

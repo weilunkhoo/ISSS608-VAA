@@ -1,9 +1,5 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+My name is Wei Lun and I am currently a full time student at SMU MITB.

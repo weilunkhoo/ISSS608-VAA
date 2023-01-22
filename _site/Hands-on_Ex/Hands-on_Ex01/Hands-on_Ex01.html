@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Khoo Wei Lun">
+<meta name="dcterms.date" content="2023-01-22">
 
 <title>ISSS608-VAA - Hands-on Exercise 1</title>
 <style>
@@ -145,12 +146,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Hands-on Exercise</span>
+ <span class="menu-text">Hands-On Exercise</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
         <li>
     <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html">
- <span class="dropdown-text">Hands-on Exercise 1</span></a>
+ <span class="dropdown-text">Hands-On Exercise 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">
+ <span class="dropdown-text">Take-home Exercise 1</span></a>
   </li>  
     </ul>
   </li>
@@ -162,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">About Me</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -184,7 +196,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#install-and-launching-r-packages" id="toc-install-and-launching-r-packages" class="nav-link" data-scroll-target="#install-and-launching-r-packages">Install and launching R packages</a></li>
   <li><a href="#importing-the-data" id="toc-importing-the-data" class="nav-link" data-scroll-target="#importing-the-data">Importing the data</a></li>
   </ul></li>
-  <li><a href="#plotting-a-simple-bar-chart" id="toc-plotting-a-simple-bar-chart" class="nav-link" data-scroll-target="#plotting-a-simple-bar-chart">Plotting a simple bar chart</a></li>
+  <li><a href="#plotting-charts" id="toc-plotting-charts" class="nav-link" data-scroll-target="#plotting-charts">Plotting Charts</a>
+  <ul class="collapse">
+  <li><a href="#simple-bar-chart" id="toc-simple-bar-chart" class="nav-link" data-scroll-target="#simple-bar-chart">Simple Bar Chart</a></li>
+  <li><a href="#trellis-boxplot" id="toc-trellis-boxplot" class="nav-link" data-scroll-target="#trellis-boxplot">Trellis Boxplot</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -207,6 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 22, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -240,8 +262,10 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </section>
 </section>
-<section id="plotting-a-simple-bar-chart" class="level1">
-<h1>Plotting a simple bar chart</h1>
+<section id="plotting-charts" class="level1">
+<h1>Plotting Charts</h1>
+<section id="simple-bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="simple-bar-chart">Simple Bar Chart</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> exam_data,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> RACE)) <span class="sc">+</span></span>
@@ -250,8 +274,39 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 <p><img src="Hands-on_Ex01_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="trellis-boxplot" class="level2">
+<h2 class="anchored" data-anchor-id="trellis-boxplot">Trellis Boxplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> CLASS)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> GENDER)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex01_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> CLASS)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> GENDER, <span class="at">ncol=</span><span class="dv">1</span>, <span class="at">strip.position=</span><span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex01_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>exam_data,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> MATHS, <span class="at">x=</span> GENDER)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(GENDER <span class="sc">~</span> CLASS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Hands-on_Ex01_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

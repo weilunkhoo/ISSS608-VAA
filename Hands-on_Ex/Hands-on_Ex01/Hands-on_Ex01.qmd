@@ -1,6 +1,7 @@
 ---
 title: "Hands-on Exercise 1"
 author: "Khoo Wei Lun"
+date: "`r Sys.Date()`"
 ---
 
 # Getting Started
@@ -19,10 +20,35 @@ pacman::p_load(tidyverse)
 exam_data <- read_csv("data/Exam_data.csv")
 ```
 
-# Plotting a simple bar chart
+# Plotting Charts
+
+## Simple Bar Chart
 
 ```{r}
 ggplot(data = exam_data,
        aes(x = RACE)) +
   geom_bar()
+```
+
+## Trellis Boxplot
+
+```{r}
+ggplot(data=exam_data,
+       aes(y = MATHS, x= CLASS)) +
+  geom_boxplot() +
+  facet_wrap(~ GENDER)
+```
+
+```{r}
+ggplot(data=exam_data,
+       aes(y = MATHS, x= CLASS)) +
+  geom_boxplot() +
+  facet_wrap(~ GENDER, ncol=1, strip.position="right")
+```
+
+```{r}
+ggplot(data=exam_data,
+       aes(y = MATHS, x= GENDER)) +
+  geom_boxplot() +
+  facet_grid(GENDER ~ CLASS)
 ```
