@@ -60,19 +60,23 @@ The 9 population pyramids are displayed in a single view using trellis display a
 
 The following are observations revealed by the above analytical visualization:
 
-1.  All nine areas have narrower base compared to the body (30 to 49 age groups) showing smaller number of children than working adults.
+1.  All nine planning areas have narrower base compared to the body which shows low birth rate as there are fewer number of children than adults.
 
-2.  All nine areas have equal proportion of young boys and young girls (0 to 9 age group).
+2.  All nine planning areas have almost symmetrical halves which suggests almost equal gender ratio.
 
-3.  Obvious bulges at 30 to 49 age groups in Punggol and Sengkang shows migration of working adults into these two planning areas.
+3.  Punggol and Sengkang have considerable higher number of young children and teenagers (0 to 19 age groups) than other areas, likely due to the development of new flats in these areas.
 
-4.  Females had a longer life expectancy than males in these areas as the female population are larger than male population for age group above 80 years old.
+4.  Indents at 30 to 49 age groups for Woodlands, Tampines and Choa Chu Kang signals an outflow of working adults out of these areas.
 
-5.  
+5.  Bulge at 30 to 49 age groups for Punggol and Sengkang indicates an influx of working adults into these two planning areas.
 
-6.  
+6.  Bedok and Tampines have the largest number of population of 50 to 69 age groups which suggests characteristics of mature estates.
 
-7.  Punggol and Sengkang have the large number of young children among the nine planning areas.
+7.  Yishun has an overall barrel like structure compared to others suggesting a more balanced ratio of the young, middle-aged and the elderlies.
+
+8.  Females had a longer life expectancy than males in these areas as the female population are larger than male population for age group above 80 years old.
+
+9.  All nine planning areas have a distinct drop for 80 to 89 age group suggesting life expectancy to be in this range.
 
 # 6. Worksheet vs Dashboard
 
@@ -97,7 +101,7 @@ ii) Able to custom layout to desired design without any coding.\
 [Disadvantages:]{.underline}\
 i) Multiple worksheet adjustments are required for any changes to the pyramids.
 
-After considering the pros and cons, trellis display in Dashboard is better suited for this exercise.
+After considering the pros and cons, trellis display in dashboard is better suited for this exercise.
 
 # 7. Step-by-Step Instructions
 
