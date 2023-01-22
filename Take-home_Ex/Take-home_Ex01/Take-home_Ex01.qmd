@@ -84,7 +84,9 @@ The following are observations revealed by the above analytical visualization:
 
 We can build a trellis display for nine population pyramids using multiple worksheets and compile into a dashboard (as shown above) or using a single worksheet (as shown below).
 
-![](images/image-233378727.png){width="695"}We will compare some advantages and disadvantages of each method.
+![](images/image-233378727.png){width="695"}
+
+We will compare some advantages and disadvantages of each method.
 
 **Trellis display (horizontal) in Worksheet**\
 [Advantages:]{.underline}\
