@@ -32,7 +32,7 @@
     "href": "In-Class_Ex/In-Class_Ex03/In-Class_Ex03.html",
     "title": "In-Class_Ex03",
     "section": "",
-    "text": "Installing and loading R packages\nTwo packages will be installed and loaded. They are tidyverse and ggiraph.\n\n#pacman::p_load(ggiralph, tidyverse)\n#Change to library because of error when running pacman::p_load(ggiralph)\nlibrary(ggiraph)\nlibrary(tidyverse)\n\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\n\np <- ggplot(data = exam_data,\n       aes(x = MATHS)) +\ngeom_dotplot_interactive(\n    aes(tooltip = ID),\n    stackgroups = TRUE, \n    binwidth = 1, \n    method = \"histodot\") +\n  scale_y_continuous(NULL, \n                     breaks = NULL)\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)"
+    "text": "Installing and loading R packages\nTwo packages will be installed and loaded. They are tidyverse and ggiraph.\n\n#pacman::p_load(ggiralph, tidyverse)\n#Change to library because of error when running pacman::p_load(ggiralph)\nlibrary(ggiraph)\nlibrary(tidyverse)\n\nImporting Data\n\nexam_data <- read_csv(\"data/Exam_data.csv\")\n\n\np <- ggplot(data = exam_data,\n       aes(x = MATHS)) +\ngeom_dotplot_interactive(\n    aes(tooltip = ID),\n    stackgroups = TRUE, \n    binwidth = 1, \n    method = \"histodot\") +\n  scale_y_continuous(NULL, \n                     breaks = NULL)\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)"
   },
   {
     "objectID": "index.html",
