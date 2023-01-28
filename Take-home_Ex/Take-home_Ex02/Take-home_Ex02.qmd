@@ -1,0 +1,64 @@
+---
+title: "Take-home Exercise 2"
+description: Creating data visualisation beyond default
+author: Khoo Wei Lun
+date: "January 29, 2023"
+toc: true
+toc-location: left
+---
+
+# 1. Overview
+
+In this DataViz Makeover exercise, we are going to critique a
+
+# 2. Original Design
+
+2.1 Clarity
+
+2.2 Aesthetics
+
+# 3. Alternative Design
+
+3.1 Proposed design sketch
+
+3.2 Design principles and best practices implemented
+
+# 4. Loading Libraries and Dataset
+
+The following code chunk is used to install the required R packages and load them onto R environment.
+
+```{r}
+pacman::p_load(patchwork, ggthemes, hrbrthemes, ggrepel, tidyverse)
+```
+
+Next, read_csv from readr package is used to import the source file which is in csv file format.
+
+```{r}
+popdata <- read_csv("Data/respopagesextod2022.csv")
+glimpse(popdata)
+```
+
+# 5. Data Preparation
+
+**5.1 Reformatting incorrect data type**
+
+The function factor() from Base R is used to convert variables Age Group (AG) and Planning Area (PA) to factors.
+
+```{r}
+#pop$AG <- factor (pop$AG, levels = unique(pop$AG))
+#pop$PA <- factor (pop$PA, levels = unique(pop$PA))
+```
+
+**5.2**
+
+Male population values need to be
+
+plot the male generation in opposite direction
+
+References: [R4DSA meetup - R Series Episode 2: Doing Data Science with Rtidyverse methods (r4dsa-meetup.netlify.app)](https://r4dsa-meetup.netlify.app/smulibr/episode02-tidyverse_methods#/data-science-process---an-overview)
+
+# 6. Visualisation
+
+**6.1 Finding the top 9 most populated planning area**
+
+6.2 Trellis diagram
