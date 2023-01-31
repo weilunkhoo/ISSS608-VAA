@@ -207,11 +207,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
-  <li><a href="#original-design" id="toc-original-design" class="nav-link" data-scroll-target="#original-design">2. Original Design</a></li>
-  <li><a href="#alternative-design" id="toc-alternative-design" class="nav-link" data-scroll-target="#alternative-design">3. Alternative Design</a></li>
-  <li><a href="#loading-libraries-and-dataset" id="toc-loading-libraries-and-dataset" class="nav-link" data-scroll-target="#loading-libraries-and-dataset">4. Loading Libraries and Dataset</a></li>
+  <li><a href="#original-visualisation" id="toc-original-visualisation" class="nav-link" data-scroll-target="#original-visualisation">2. Original Visualisation</a></li>
+  <li><a href="#alternative-visualisation" id="toc-alternative-visualisation" class="nav-link" data-scroll-target="#alternative-visualisation">3. Alternative Visualisation</a></li>
+  <li><a href="#load-libraries-and-dataset" id="toc-load-libraries-and-dataset" class="nav-link" data-scroll-target="#load-libraries-and-dataset">4. Load Libraries and Dataset</a></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">5. Data Preparation</a></li>
   <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">6. Visualisation</a></li>
+  <li><a href="#challenges-and-future-work" id="toc-challenges-and-future-work" class="nav-link" data-scroll-target="#challenges-and-future-work">7. Challenges and Future work</a></li>
   </ul>
 </nav>
 </nav>
@@ -257,27 +258,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="overview" class="level1">
 <h1>1. Overview</h1>
-<p>In this DataViz Makeover exercise, we are going to critique a</p>
+<hr>
+<p>In this take-home exercise, the task is to critique an original data visualisation of demographic structure for nine planning area in Singapore and create an alternate improved design by applying design principles and best practices.</p>
+<p>The dataset used in this exercise is Singapore Residents by Planning Area / Subzone, Age Group, Sex and Type of Dwelling, june 2022. It is available at <a href="https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data">Department of Statistics, Singapore</a>.</p>
 </section>
-<section id="original-design" class="level1">
-<h1>2. Original Design</h1>
-<p>2.1 Clarity</p>
-<p>2.2 Aesthetics</p>
+<section id="original-visualisation" class="level1">
+<h1>2. Original Visualisation</h1>
+<hr>
+<p>The original visualisation contains three sections: (i) overall population pyramid (a.k.a age-sex pyramid), (ii) population pyramid by planning area (PA) and (iii) population pyramid by subzone. The live dashboard can be found in <a href="https://public.tableau.com/app/profile/yiman.chen/viz/takehome_ex01/Story1">Tableau Public</a>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><u>Overall Population Pyramid</u></p>
+<p><img src="images/OriViz_Overview.png" class="img-fluid"></p>
+<p><u>Population Pyramid by Subzone</u></p>
+<p><img src="images/OriViz_SZ.png" class="img-fluid"></p></td>
+<td><p><u>Population Pyramid by Planning Area</u></p>
+<p><img src="images/OriViz_PA.png" class="img-fluid"></p></td>
+</tr>
+</tbody>
+</table>
+<p><u><strong>2.1 Clarity</strong></u></p>
+<p>a. <strong>Incomprehensible dashboard title</strong>: the term ‘Age Pyramid: Sex Pattern’ does not have the same meaning as age-sex pyramid. Readers might be confused with what the visualisations are trying to show.</p>
+<p>b. <strong>Chart</strong> <strong>titles have no lead-in or call-outs</strong>: It is good that reader is able to understand the reference country and time period from the chart title. However, it can be further improved with lead-in and call-outs to also explain the key trend or insights.</p>
+<p>c. <strong>Y-axis ticker labels are confusing</strong>: There is an unknown age group called ‘Null’ and the age range of each age group is represented using a solo number. Readers are not able to decipher what ‘Null’ age group, the age range of each group and whether the age group ‘80’ refers to 80 to 90 years old or 80years old and above.</p>
+<p>d. <strong>Source of data is missing:</strong> Missing recognition of data source could let the data visualisation lose credibility.</p>
+<p>e. <strong>Excess visulisation did not meet business intent</strong>: Excessive information is provided in this dashboard. Plotting of overall population pyramid, subzone population pyramids as well as all planning area population pyramids may lead readers away from the business intent of studying only nine planning areas.</p>
+<p>f. <strong>Instructions are provided on overview page</strong>: Readers are guided on how to use the interactive dashboard. This reduces confusion on how to use the interactive dashboard.</p>
+<p><u><strong>2.2 Aesthetics</strong></u></p>
+<p>a. <strong>Congested and repeated x-axis labels</strong>: For planning areas and subzone pages, labels for the x-axis are clear but congested. Legend and color fill can be used to replace the congested labels and the need for repeated labels.</p>
+<p>b. <strong>X-axis between plots are not distinct:</strong> For planning areas and subzone pages, the x-axis looks like they run continuously and there are two ‘0K’ labels for the same plot. This makes it difficult to locate the axis.</p>
+<p>c. <strong>Visualisations do not fit into a single window</strong>: For planning areas and subzone pages, it is difficult to view and make comparison between population pyramids of different areas. The blanks in the charts does not value add to the visualisations.</p>
+<p>d. <strong>Missing horizontal grid lines</strong>: For planning areas and subzone pages, minor horizontal grid lines can be added for readers to read and compare the same age group across two areas.</p>
+<p>d. <strong>Chart title and x-axis title at the same level</strong>: On the overview page, readers may not be able to find the chart title for the bottom chart because it is on the same level as x-axis title.</p>
+<p>e. <strong>Dual y-axis</strong>: On the overview page, the y-axis in the middle for the bottom chart does not value-add. It would be able to remove it and reference the y-axis on the left.</p>
 </section>
-<section id="alternative-design" class="level1">
-<h1>3. Alternative Design</h1>
-<p>3.1 Proposed design sketch</p>
-<p>3.2 Design principles and best practices implemented</p>
+<section id="alternative-visualisation" class="level1">
+<h1>3. Alternative Visualisation</h1>
+<p><u><strong>3.1 Proposed design sketch</strong></u></p>
+<p>Since the task is to study the demographic structures of nine planning areas, the proposed design do not need the overall population pyramid and the population pyramid by subzone since they provide excess information that might distract the readers from what is important. Hence, the proposed design will only contain one chart which is the population pyramids of nine planning areas.</p>
+<p><img src="images/Takehome2sketch.jpg" class="img-fluid" width="700"></p>
+<p><u><strong>3.1 Clarity</strong></u></p>
+<p>a. <strong>Meaningful chart titles</strong>: The main title will be “Discovering Population Pyramid of 9 Most Populated Planning Areas in Singapore, June 2022” so the readers are able to understand the context of the visualisation immediately. The chart also have subtitle and commentary to provide additional clarity on the context and key observation.</p>
+<p>b. <strong>Right sized content</strong>: The visualisation do not contain excessive information that could distract the readers as explained at the start of this section. Also, only nine instead of all planning areas are plotted so readers know immediately which areas are the targets of comparison.</p>
+<p>c. <strong>Clear</strong> <strong>axes labels:</strong> Both axes titles are properly labelled so the readers know what each chart measures. For y-axis, the age groups are ordered from youngest at the bottom to oldest at the top per typical convention so readers can digest this information easily. For x-axis, there is no labels for male and female populations as they will be colour coded.</p>
+<p>d. <strong>Inclusion of data source</strong> at the bottom of the chart will provide credibility to the visualisation.</p>
+<p><u><strong>3.2 Aesthetic</strong></u></p>
+<p>a. <strong>Use of legend and colour labels</strong>: The color shading and legend of the graph is used to identify the gender in each population pyramid. The intention of the colour is to help reader easily identify the gender directly from the chart without referring to the x-axis. It also helps to reduce congestion at the x-axis.</p>
+<p>b. <strong>Clear demarcation and gridlines</strong>: The charts do not share a continuous x-axis so readers can easily differentiate the axes for different planning area charts. Grid lines are also added so readers are able to make horizontal and vertical comparisons with ease.</p>
+<p>c. <strong>Smaller scale of x-axis major ticks</strong>: The scale of x-axis major tick marks are reduced to 5000 to show finer details and allow readers to identify smaller differences easily.</p>
+<p>d. <strong>Readable chart size</strong>: The size of the charts in the visualisation is configured such that all the bars within the population pyramids are readable and does not feel congested.</p>
 </section>
-<section id="loading-libraries-and-dataset" class="level1">
-<h1>4. Loading Libraries and Dataset</h1>
+<section id="load-libraries-and-dataset" class="level1">
+<h1>4. Load Libraries and Dataset</h1>
 <p>The following code chunk is used to install the required R packages and load them onto R environment.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(patchwork, ggthemes, hrbrthemes, ggrepel, tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(patchwork, ggthemes, hrbrthemes, ggrepel, plotly, tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Next, read_csv from readr package is used to import the source file which is in csv file format.</p>
+<p>Next, read_csv() from readr as part of tidyverse package is used to import the source file which is in csv file format.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>popdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Data/respopagesextod2022.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#To load dataset from .csv file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>popdata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Data/respopagesextod2022.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 100928 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
@@ -288,37 +333,95 @@ dbl (2): Pop, Time
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(popdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 100,928
-Columns: 7
-$ PA   &lt;chr&gt; "Ang Mo Kio", "Ang Mo Kio", "Ang Mo Kio", "Ang Mo Kio", "Ang Mo K…
-$ SZ   &lt;chr&gt; "Ang Mo Kio Town Centre", "Ang Mo Kio Town Centre", "Ang Mo Kio T…
-$ AG   &lt;chr&gt; "0_to_4", "0_to_4", "0_to_4", "0_to_4", "0_to_4", "0_to_4", "0_to…
-$ Sex  &lt;chr&gt; "Males", "Males", "Males", "Males", "Males", "Males", "Males", "M…
-$ TOD  &lt;chr&gt; "HDB 1- and 2-Room Flats", "HDB 3-Room Flats", "HDB 4-Room Flats"…
-$ Pop  &lt;dbl&gt; 0, 10, 10, 30, 0, 50, 0, 0, 0, 0, 10, 30, 0, 30, 0, 0, 0, 10, 10,…
-$ Time &lt;dbl&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022,…</code></pre>
-</div>
 </div>
 </section>
 <section id="data-preparation" class="level1">
 <h1>5. Data Preparation</h1>
-<p><strong>5.1 Reformatting incorrect data type</strong></p>
-<p>The function factor() from Base R is used to convert variables Age Group (AG) and Planning Area (PA) to factors.</p>
+<p><u><strong>5.1 Compute frequency count by Age Group, Sex and Planning Area</strong></u></p>
+<p>Frequency count of the total population is computed based on planning area, sex and age group. As shown in code chunk below, groupby() is used to group data by defined parameters while summarise() counts the number of residents.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pop$AG &lt;- factor (pop$AG, levels = unique(pop$AG))</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pop$PA &lt;- factor (pop$PA, levels = unique(pop$PA))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summing residents based on planning area, age group and sex</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>popdata <span class="ot">&lt;-</span> popdata <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PA</span><span class="st">`</span>,<span class="st">`</span><span class="at">AG</span><span class="st">`</span>,<span class="st">`</span><span class="at">Sex</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">summarise</span>(<span class="st">'Count'</span><span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Pop</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'PA', 'AG'. You can override using the
+`.groups` argument.</code></pre>
 </div>
-<p><strong>5.2</strong></p>
-<p>Male population values need to be</p>
-<p>plot the male generation in opposite direction</p>
-<p>References: <a href="https://r4dsa-meetup.netlify.app/smulibr/episode02-tidyverse_methods#/data-science-process---an-overview">R4DSA meetup - R Series Episode 2: Doing Data Science with Rtidyverse methods (r4dsa-meetup.netlify.app)</a></p>
+</div>
+<p><u><strong>5.2 Transform population data for males</strong></u></p>
+<p>To plot the male population on the left axis of the population pyramid, ‘Pop’ values of Males are converted to negative values using the ifelse() function in code chunk below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create variable for chart purposes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>popdata_plot <span class="ot">&lt;-</span> popdata</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#If Sex = 'Males', population value becomes negative else remains unchanged</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>popdata_plot<span class="sc">$</span>Count <span class="ot">=</span> <span class="fu">ifelse</span>(popdata_plot<span class="sc">$</span>Sex <span class="sc">==</span> <span class="st">'Males'</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">yes =</span> <span class="sc">-</span>popdata_plot<span class="sc">$</span>Count,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">no =</span> popdata_plot<span class="sc">$</span>Count</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                     )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="visualisation" class="level1">
 <h1>6. Visualisation</h1>
-<p><strong>6.1 Finding the top 9 most populated planning area</strong></p>
-<p>6.2 Trellis diagram</p>
+<p><u><strong>6.1 Finding the top 9 most populated planning area</strong></u></p>
+<p>As the requirement is to study the demographic structures of nine planning area, we will be choosing the nine most populated planning area.</p>
+<p>The code chunk below consists of three main steps to obtain our target areas: First, the frequency count is computed based on planning area only using groupby() then the list is sorted from largest to smallest count using arrange(desc()). The final step is to pick out the top nine planning area in the list, which are also the nine most populated areas using top_n().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This code chunk does the following:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Step1) Compute resident count by PA and sort count in descending order</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Step2) Removes all but top 9 most populated PA</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>popdata_top9 <span class="ot">&lt;-</span> popdata <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">PA</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">summarise</span>(<span class="st">'total'</span><span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Count</span><span class="st">`</span>)) <span class="sc">%&gt;%</span>        <span class="co">#Step1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">total</span><span class="st">`</span>)) <span class="sc">%&gt;%</span>                 </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">top_n</span>(<span class="dv">9</span>,<span class="at">wt=</span>total) <span class="sc">%&gt;%</span>                       <span class="co">#Step2</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><u><strong>6.2 Trellis display of population pyramids for top 9 most populated planning area of Singapore</strong></u></p>
+<p>For this dataset, the age group is sorted alphanumerically which would not make sense for the population pyramid axis. Hence, we need to assign the correct order for this categorical variable.</p>
+<p>This can be done by changing the order for age group variable using factor() with the factor levels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Define the correct order for AG</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ag_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0_to_4"</span>, <span class="st">"5_to_9"</span>, <span class="st">"10_to_14"</span>, <span class="st">"15_to_19"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"20_to_24"</span>, <span class="st">"25_to_29"</span>, <span class="st">"30_to_34"</span>, <span class="st">"35_to_39"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"40_to_44"</span>, <span class="st">"45_to_49"</span>, <span class="st">"50_to_54"</span>, <span class="st">"55_to_59"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"60_to_64"</span>, <span class="st">"65_to_69"</span>, <span class="st">"70_to_74"</span>, <span class="st">"75_to_79"</span>, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"80_to_84"</span>, <span class="st">"85_to_89"</span>, <span class="st">"90_and_over"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Update order for AG column for popdata_plot dataframe</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>popdata_plot<span class="sc">$</span>AG <span class="ot">&lt;-</span> <span class="fu">factor</span> (popdata_plot<span class="sc">$</span>AG, <span class="at">level =</span> ag_order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An initial static plot is plotted using ggplot() and geom_col() from ggplot2 package. Then using facet_wrap, the population pyramids of 9 most populated planning areas are put into a 3 by 3 grid.</p>
+<p>scale_x_continuous() is used to configure the x-axis markers and ticker labels while labs() is used to add title and subtitle on top of the chart. Last but not least, the axis titles are updated using ylab() and xlab().</p>
+<div class="cell" data-fig.dpi="800">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using ggplot and facet_wrap to plot a trellis diagram of 9 population pyramid</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(popdata_plot, PA <span class="sc">%in%</span> <span class="fu">c</span>(popdata_top9<span class="sc">$</span>PA)),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> Count, <span class="at">y=</span> AG, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>( <span class="sc">~</span>PA, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15000</span>,<span class="dv">15000</span>),              <span class="co">#format x-axis</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">15000</span>, <span class="dv">15000</span>, <span class="dv">5000</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">as.character</span>(<span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">15</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                                      <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">5</span>))),<span class="st">"K"</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Formatting axis and adding chart title and subtitle</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Discovering Population Pyramid of 9 Most Populated Planning Areas in Singapore, June 2022"</span>, </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle=</span><span class="st">"Distinct differences in demographic structures of north-east vs west planning areas of Singapore"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption=</span><span class="st">"Source: Department of Statistics, Singapore (SingStat)"</span>) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Age Groups"</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Population"</span>) <span class="sc">+</span>  </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Take-home_Ex02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+</section>
+<section id="challenges-and-future-work" class="level1">
+<h1>7. Challenges and Future work</h1>
+<p>The main challenge when attempting this take-home exercise is not proficient in using the correct R packages. With suitable packages and functions, more analytical layers can be applied to the chart object to better serve the user needs. An example is using plotly package, where a tooltip can help users identify the stats of each bar in the pyramid without labelling all the charts.</p>
 
 
 </section>
