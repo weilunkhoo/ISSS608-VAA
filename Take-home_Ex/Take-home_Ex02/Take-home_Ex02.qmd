@@ -200,6 +200,8 @@ p + labs(title="Discovering Population Pyramid of 9 Most Populated Planning Area
   
 ```
 
-# 7. Challenges and Future work
+# 7. Reflection
 
-The main challenge when attempting this take-home exercise is not proficient in using the correct R packages. With suitable packages and functions, more analytical layers can be applied to the chart object to better serve the user needs. An example is using plotly package, where a tooltip can help users identify the stats of each bar in the pyramid without labelling all the charts.
+My main challenge when attempting this take-home exercise is not being proficient in using the correct R packages. With suitable packages and functions, more analytical layers can be applied to the chart object to better serve the user needs. For example, I would like to add relevant statistical parameters such as mean male and female population of the nine planning areas for each age group as a vertical line in each nine plots to provide some ease of comparison for the readers.
+
+Future work can be done to enhance the population pyramid chart. An example is using plotly package, where a tooltip can help users identify the stats of each bar in the pyramid without labelling all the charts.
