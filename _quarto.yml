@@ -15,12 +15,18 @@ website:
           href: "In-Class_Ex/In-Class_Ex03/In-Class_Ex03.html"
         - text: "In-Class Exercise 4"
           href: "In-Class_Ex/In-Class_Ex04/In-Class_Ex04.html"
+        - text: "In-Class Exercise 5a"
+          href: "In-Class_Ex/In-Class_Ex05/In-Class_Ex05(a).html"
+        - text: "In-Class Exercise 5b"
+          href: "In-Class_Ex/In-Class_Ex05/In-Class_Ex05(b).html"
     - text: "Take-home Exercise"
       menu:
         - text: "Take-home Exercise 1"
           href: "Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html"
         - text: "Take-home Exercise 2"
           href: "Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html"
+        - text: "Take-home Exercise 3"
+          href: "Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html"
     right:
       - href: index.qmd
         text: Home

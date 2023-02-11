@@ -1,0 +1,5 @@
+---
+title: "Take-home Exercise 3"
+description: Putting Visual Analytics into Practical Use
+author: "Khoo Wei Lun"
+---

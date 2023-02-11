@@ -1,0 +1,156 @@
+---
+title: "Hands-On Excerise 5"
+date: "February 11, 2023"
+date-modified: "`r Sys.Date()`"
+format: html
+execute: 
+  echo: true
+  eval: true
+  warning: false
+editor: visual
+---
+
+# 1. Installing and Launching R Packages
+
+```{r}
+pacman::p_load(corrplot, tidyverse, ggstatsplot)
+```
+
+## Importing Data
+
+------------------------------------------------------------------------
+
+```{r}
+wine <- read_csv("data/wine_quality.csv")
+```
+
+# 2. Correlation Matrix: *pairs() method*
+
+## Basic Plot
+
+------------------------------------------------------------------------
+
+```{r}
+pairs(wine[,2:12])
+```
+
+# 3. Correlation Matrix: *ggcormat()*
+
+## Basic plot
+
+------------------------------------------------------------------------
+
+```{r}
+ggstatsplot::ggcorrmat(
+  data = wine, 
+  cor.vars = 1:11)
+```
+
+Adding title and subtitle. list() function enables adjustment to be made within the chart.
+
+```{r}
+#ggcorrplot is able to autofill x and y axis and slant the axis labels automatically
+#| fig-width: 7
+#| fig-height: 7
+ggstatsplot::ggcorrmat(
+  data = wine, 
+  cor.vars = 1:11,
+  ggcorrplot.args = list(outline.color = "black", 
+                         hc.order = TRUE,
+                         tl.cex = 10),
+  title    = "Correlogram for wine dataset",
+  subtitle = "Four pairs are no significant at p < 0.05"
+)
+```
+
+## Multiple Plots
+
+------------------------------------------------------------------------
+
+```{r}
+grouped_ggcorrmat(
+  data = wine,
+  cor.vars = 1:11,
+  grouping.var = type,
+  type = "robust",
+  p.adjust.method = "holm",
+  plotgrid.args = list(ncol = 2),
+  ggcorrplot.args = list(outline.color = "black", 
+                         hc.order = TRUE,
+                         tl.cex = 10),
+  annotation.args = list(
+    tag_levels = "a",
+    title = "Correlogram for wine dataset",
+    subtitle = "The measures are: alcohol, sulphates, fixed acidity, citric acid, chlorides, residual sugar, density, free sulfur dioxide and volatile acidity",
+    caption = "Dataset: UCI Machine Learning Repository"
+  )
+)
+```
+
+# 4. Correlation Matrix: *corrplot*
+
+```{r}
+wine.cor <- cor(wine[, 1:11])
+```
+
+## Basic
+
+------------------------------------------------------------------------
+
+```{r}
+corrplot(wine.cor, 
+         method = "ellipse", 
+         type="lower",
+         diag = FALSE,
+         tl.col = "black")
+```
+
+## Mixed Layout
+
+------------------------------------------------------------------------
+
+```{r}
+corrplot.mixed(wine.cor, 
+               lower = "ellipse", 
+               upper = "number",
+               tl.pos = "lt",
+               diag = "l",
+               tl.col = "black")
+```
+
+## Adding Significant Test
+
+------------------------------------------------------------------------
+
+Compute p-values and confidence interval
+
+```{r}
+wine.sig = cor.mtest(wine.cor, conf.level= .95)
+```
+
+Using p.mat argument,
+
+```{r}
+corrplot(wine.cor,
+         method = "number",
+         type = "lower",
+         diag = FALSE,
+         tl.col = "black",
+         tl.srt = 45,
+         p.mat = wine.sig$p,
+         sig.level = .05)
+```
+
+## Reorder a Corrgram
+
+------------------------------------------------------------------------
+
+```{r}
+corrplot.mixed(wine.cor, 
+               lower = "ellipse", 
+               upper = "number",
+               tl.pos = "lt",
+               diag = "l",
+               order="AOE",
+               tl.col = "black")
+```
