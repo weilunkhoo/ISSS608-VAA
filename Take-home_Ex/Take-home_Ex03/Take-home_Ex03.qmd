@@ -211,7 +211,7 @@ plot_ly(data = HDBdata2022_region,
         type = "box",
         color = ~region) %>%
   
-  layout(title = "Resale Price vs Town",
+  layout(title = "Resale Price vs Town, 2022",
          xaxis = list(title = "Town"),
          yaxis = list(title = "Resale Price($)"))
 ```
@@ -262,7 +262,7 @@ plot_ly(
                          "<br>Resale Price($M):", round(resale_price/1000000,
                                                         digits=2))) |>
 #Configure title and axes
-  layout(title = "Resale Price vs Floor Area",
+  layout(title = "Resale Price vs Floor Area, 2022",
          xaxis = list(title = "Floor Area (sqm)"),
          yaxis = list(title = "Resale Price($)"))
 ```
@@ -291,7 +291,7 @@ ggscatterstats(
   x = floor_area_sqm,
   y = resale_price,
   type = "nonparametric",
-  marginal = FALSE,
+  marginal = TRUE,
   title = "Significant Test of Correlation",
   xlab = "Floor Area (sqm)",
   ylab = "Resale Price ($)"
@@ -303,8 +303,63 @@ As the test reveals that p-value is less than 𝞪-value, there is sufficient st
 
 Also, we can conclude intuitively as well as statically that more rooms flat type will fetch higher resale price since each flat type belongs to a relatively distinct floor area range.
 
+**4.2.3 HDB flats with higher storey ranges have higher average resale prices**
+
+```{r}
+tooltip <- function(y, ymax, accuracy = 1) {   #<<
+  mean <- scales::number(y, accuracy = accuracy) #<<
+  sem <- scales::number(ymax - y, accuracy = accuracy) #<<
+  paste("Average Resale Price($k):", mean, "+/-", sem) #<<
+} #<<
+
+gg_point <- ggplot(data=HDBdata2022, 
+                   aes(x = storey_range),
+) +
+  stat_summary(aes(y = resale_price/1000, 
+                   tooltip = after_stat(  #<<
+                     tooltip(y, ymax))),  #<<
+    fun.data = "mean_se", 
+    geom = GeomInteractiveCol,  #<<
+    fill = "Grey"
+  ) +
+  stat_summary(aes(y = resale_price/1000),
+    fun.data = mean_se,
+    geom = "errorbar", width = 0.2, linewidth = 0.2
+  ) +
+  coord_flip() +
+  labs(title="Average Resale Price vs Storey Range, 2022") +
+  ylab("Average Resale Price ($k)") +
+  xlab("Storey Reange") +  
+  theme_minimal()        
+
+girafe(ggobj = gg_point,
+       width_svg = 8,
+       height_svg = 8*0.618)
+```
+
+Observations:
+
+-   It can be observed that the average resale prices for HDB flats increases as the storey ranges increases. This could be due to homeowners wish to stay higher so they are further away from the noise pollution from the roads and human traffic at the ground level.
+
+-   Another point to note is that the range of the resale price is smaller at the lower storey ranges. This could be due to lower demand, partly caused by the requirements that a minority ethic group can only sell their home to another minority ethic group.
+
+**4.2.3 HDB flats models do not show distinct relationship with resale prices**
+
+```{r}
+p_boxplot <- HDBdata2022 %>%
+  ggplot(aes(x = flat_model, y = resale_price)) + 
+  geom_boxplot(aes(fill = flat_type)) +
+  coord_flip()
+
+ggplotly(p_boxplot) %>%
+  layout(title = 'Flat Model vs Resale Price, 2022',
+         xaxis = list(title = 'Resale Price'), 
+         yaxis = list(title = 'Flat Model'),
+         legend = list(title=list(text='<b> Flat Type </b>')))
+```
+
 ## 5. Conclusion
 
 From the overall trends, we had observed that overall HDB flat resale prices were on a rise in the year 2022. Towns with newer flats (i.e. longer remaining lease period) generally have higher transaction volume than those with older flats. Diving deeper into factors that could impact resale price, we tested and proven that the median resale prices in the central region are higher than the rest and the mean resale price increases with larger floor area.
 
-If given more time, there are many opportunities to further explore this data set. They include exploration of the relationship between flat model, resale price and storey level range and remaining lease as well as visualisation of uncertainty in using price averages in Section 4.1
+If given more time, there are many opportunities to further explore this data set. They include statistically testing on resale price and storey level range and remaining lease as well as visualisation of uncertainty in using price averages in Section 4.1
