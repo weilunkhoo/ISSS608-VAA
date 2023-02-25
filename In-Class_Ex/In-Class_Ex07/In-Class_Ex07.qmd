@@ -1,0 +1,145 @@
+---
+title: "In-Class Excerise 7"
+description: Visualising and Analysing Geographic Data
+date: "February 25, 2023"
+date-modified: "`r Sys.Date()`"
+format: html
+execute: 
+  echo: true
+  eval: true
+  warning: false
+editor: visual
+---
+
+## In Class Notes
+
+[Map and Geographical Data]{.underline}
+
+-   When working on geographical data, understand the data and utilize the most appropriate geometry.
+
+[Coordinates System]{.underline}
+
+-   Geographic coordinates system are in decimal places and is useful in providing precise location. However, it is not ideal for measuring distance
+
+-   Projected coordinates system has advantage that lengths (in meters), angles, and areas are constant across the two dimensions.
+
+[Qualitative Thematic Map]{.underline}
+
+-   Use of different shapes, hue, arrangement and orientation for different representation
+
+-   For colour, values refers to different tones of grey. Saturation refers to same colour with different intensity. For different quantities, different saturation of the same colour can be used. Alternatively, different sizes can also meet the same intent.
+
+[Proportional Symbol Map]{.underline}
+
+-   Understanding how to size the circles: we should not double the diameter of the circles when the value is doubled but instead, we should double the area (increase in size is much smaller = misleading)
+
+-   Area representation should be consistent (e.g. we should not compare states of America against other countries as a whole).
+
+-   Bricks map (wafer map in R) is an alternative method for proportional symbol map
+
+[Choropleth Map]{.underline}
+
+-   Should not be confused with heatmap
+
+```{=html}
+<!-- -->
+```
+-   Unclassified choropleth map have a smooth, continuous gradient
+
+-   Map visualisation is affected by the number of classes as well as the method of classification used.
+
+    -   Equal interval means that each class/bin has the same range
+
+    -   Quantitle means each class have the same number of observations
+
+-   Should avoid multiple colours because it misleads the reader easily
+
+[Geofacet]{.underline}
+
+-   Positions the graphs at their relative location
+
+-   Have to manually design the grid based on the map location
+
+## In Class Exercise (SG Pools)
+
+-   .shp file is the commonly used data file format for geospatial data (cannot be used alone)
+
+-   .kml is another commonly used data file format as well
+
+-   .geojson file is readable by notepad but it is not easily edittable
+
+**Adding details to the map by using details**
+
+-   Adding name to detail to bring out the Singapore map (better method than
+
+![](images/image-1343375771.png){width="500"}
+
+Creating a calculated field to rename 0 and 1 to Branch and Outlet
+
+![](images/image-827523122.png){width="500"}
+
+Adding the channel to colours to enable more differentiation
+
+![](images/image-22899648.png){width="500"}
+
+Adding Gp1Gp2Winn to see which are the popular outlets/branches
+
+-   Changing size, reducing opactity and adding border to improve visualisation
+
+![](images/image-156640626.png){width="500"}
+
+Editting tooltip to show useful info
+
+-   Xcoord and Ycoord are removed
+
+![](images/image-134522624.png){width="500"}
+
+Final visualisation for SGPools outlets with winning rates:
+
+![](images/image-460104381.png){width="500"}
+
+## In Class Exercise (Realis)
+
+For this exercise, we will use the csv file titled "ResidentialTransaction20220826195250".
+
+We will first remove the existing file that appear on the screen.
+
+![](images/image-962730863.png){width="500"}
+
+Next, we will select the six residential files and drag them into create table. this allows Tableau to auto merge all the six tables on its own.
+
+![](images/image-1076846818.png){width="500"}
+
+After adding longtitude and latitude, add postal code to details. Map of Singapore appears because tableau is linked to Onemap which enables it to read the postal code and identify its corresponding location.
+
+![](images/image-757333928.png){width="500"}
+
+Adding more details to the charts: Project name, Number of units sold, and Sold price. Also adding filter for property type. Pin the map so the visualisation does not change when changing different filter which can be distracting for the readers.
+
+![](images/image-1338293060.png){width="500"}
+
+Final visualisation for Property Resale Price in Singapore:
+
+![](images/image-1905685578.png){width="500"}
+
+## In Class Exercise (Geospatial)
+
+We can make use of [data.gov.sg](https://data.gov.sg/dataset/master-plan-2019-subzone-boundary-no-sea) to find geospatial data of Singapore
+
+![](images/image-935857065.png){width="500"}
+
+We will be adding the files 'respopagesextod2022' and 'master-plan-2019-subzone-boundary-no-sea-geojson' for this exercise. Join using the
+
+![](images/image-1829525545.png){width="500" height="280"}
+
+If the subzone naming is not corrected, there would not be any differentiation in the map. This is because the naming mismatch due to case sensitive. We will resolve this by going to the data source type and change the naming of subzone using formula.
+
+![](images/image-1946394972.png){width="500"}
+
+Increasing the population size classification by double clicking on the legend. Increase the number of steps to the desired number (in this case, we choose 10).
+
+![](images/image-1636291056.png){width="500"}
+
+The final visualisation for Population size in Singapore:
+
+![](images/image-905414208.png){width="500"}

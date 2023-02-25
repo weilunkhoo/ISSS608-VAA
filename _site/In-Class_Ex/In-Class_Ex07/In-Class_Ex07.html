@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-02-25">
+<meta name="description" content="Visualising and Analysing Geographic Data">
+
+<title>ISSS608-VAA - In-Class Excerise 7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISSS608-VAA</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-Class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-Class_Ex03/In-Class_Ex03.html">
+ <span class="dropdown-text">In-Class Exercise 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-Class_Ex04/In-Class_Ex04.html">
+ <span class="dropdown-text">In-Class Exercise 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-Class_Ex05/In-Class_Ex05(a).html">
+ <span class="dropdown-text">In-Class Exercise 5a</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-Class_Ex05/In-Class_Ex05(b).html">
+ <span class="dropdown-text">In-Class Exercise 5b</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-Class_Ex07/In-Class_Ex07.html">
+ <span class="dropdown-text">In-Class Exercise 7</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex01/Take-home_Ex01.html">
+ <span class="dropdown-text">Take-home Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex02/Take-home_Ex02.html">
+ <span class="dropdown-text">Take-home Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex03/Take-home_Ex03.html">
+ <span class="dropdown-text">Take-home Exercise 3</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About Me</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#in-class-notes" id="toc-in-class-notes" class="nav-link active" data-scroll-target="#in-class-notes">In Class Notes</a></li>
+  <li><a href="#in-class-exercise-sg-pools" id="toc-in-class-exercise-sg-pools" class="nav-link" data-scroll-target="#in-class-exercise-sg-pools">In Class Exercise (SG Pools)</a></li>
+  <li><a href="#in-class-exercise-realis" id="toc-in-class-exercise-realis" class="nav-link" data-scroll-target="#in-class-exercise-realis">In Class Exercise (Realis)</a></li>
+  <li><a href="#in-class-exercise-geospatial" id="toc-in-class-exercise-geospatial" class="nav-link" data-scroll-target="#in-class-exercise-geospatial">In Class Exercise (Geospatial)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">In-Class Excerise 7</h1>
+</div>
+
+<div>
+  <div class="description">
+    Visualising and Analysing Geographic Data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 25, 2023</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 25, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="in-class-notes" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-notes">In Class Notes</h2>
+<p><u>Map and Geographical Data</u></p>
+<ul>
+<li>When working on geographical data, understand the data and utilize the most appropriate geometry.</li>
+</ul>
+<p><u>Coordinates System</u></p>
+<ul>
+<li><p>Geographic coordinates system are in decimal places and is useful in providing precise location. However, it is not ideal for measuring distance</p></li>
+<li><p>Projected coordinates system has advantage that lengths (in meters), angles, and areas are constant across the two dimensions.</p></li>
+</ul>
+<p><u>Qualitative Thematic Map</u></p>
+<ul>
+<li><p>Use of different shapes, hue, arrangement and orientation for different representation</p></li>
+<li><p>For colour, values refers to different tones of grey. Saturation refers to same colour with different intensity. For different quantities, different saturation of the same colour can be used. Alternatively, different sizes can also meet the same intent.</p></li>
+</ul>
+<p><u>Proportional Symbol Map</u></p>
+<ul>
+<li><p>Understanding how to size the circles: we should not double the diameter of the circles when the value is doubled but instead, we should double the area (increase in size is much smaller = misleading)</p></li>
+<li><p>Area representation should be consistent (e.g.&nbsp;we should not compare states of America against other countries as a whole).</p></li>
+<li><p>Bricks map (wafer map in R) is an alternative method for proportional symbol map</p></li>
+</ul>
+<p><u>Choropleth Map</u></p>
+<ul>
+<li>Should not be confused with heatmap</li>
+</ul>
+<!-- -->
+<ul>
+<li><p>Unclassified choropleth map have a smooth, continuous gradient</p></li>
+<li><p>Map visualisation is affected by the number of classes as well as the method of classification used.</p>
+<ul>
+<li><p>Equal interval means that each class/bin has the same range</p></li>
+<li><p>Quantitle means each class have the same number of observations</p></li>
+</ul></li>
+<li><p>Should avoid multiple colours because it misleads the reader easily</p></li>
+</ul>
+<p>Geofacet</p>
+<ul>
+<li><p>Positions the graphs at their relative location</p></li>
+<li><p>Have to manually design the grid based on the map location</p></li>
+</ul>
+</section>
+<section id="in-class-exercise-sg-pools" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise-sg-pools">In Class Exercise (SG Pools)</h2>
+<ul>
+<li><p>.shp file is the commonly used data file format for geospatial data (cannot be used alone)</p></li>
+<li><p>.kml is another commonly used data file format as well</p></li>
+<li><p>.geojson file is readable by notepad but it is not easily edittable</p></li>
+</ul>
+<p><strong>Adding details to the map by using details</strong></p>
+<ul>
+<li>Adding name to detail to bring out the Singapore map (better method than</li>
+</ul>
+<p><img src="images/image-1343375771.png" class="img-fluid" width="500"></p>
+<p>Creating a calculated field to rename 0 and 1 to Branch and Outlet</p>
+<p><img src="images/image-827523122.png" class="img-fluid" width="500"></p>
+<p>Adding the channel to colours to enable more differentiation</p>
+<p><img src="images/image-22899648.png" class="img-fluid" width="500"></p>
+<p>Adding Gp1Gp2Winn to see which are the popular outlets/branches</p>
+<ul>
+<li>Changing size, reducing opactity and adding border to improve visualisation</li>
+</ul>
+<p><img src="images/image-156640626.png" class="img-fluid" width="500"></p>
+<p>Editting tooltip to show useful info</p>
+<ul>
+<li>Xcoord and Ycoord are removed</li>
+</ul>
+<p><img src="images/image-134522624.png" class="img-fluid" width="500"></p>
+<p>Final visualisation for SGPools outlets with winning rates:</p>
+<p><img src="images/image-460104381.png" class="img-fluid" width="500"></p>
+</section>
+<section id="in-class-exercise-realis" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise-realis">In Class Exercise (Realis)</h2>
+<p>For this exercise, we will use the csv file titled “ResidentialTransaction20220826195250”.</p>
+<p>We will first remove the existing file that appear on the screen.</p>
+<p><img src="images/image-962730863.png" class="img-fluid" width="500"></p>
+<p>Next, we will select the six residential files and drag them into create table. this allows Tableau to auto merge all the six tables on its own.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/image-1076846818.png" class="img-fluid figure-img" width="500"></p>
+<p></p><figcaption class="figure-caption">After adding longitude and latitude, add postal code to details. Map of Singapore appears because tableau is linked to Onemap which enables it to read the postal code and identify its corresponding location.</figcaption><p></p>
+</figure>
+</div>
+<p><img src="images/image-757333928.png" class="img-fluid" width="500"></p>
+<p>Adding more details to the charts: Project name, Number of units sold, and Sold price. Also adding filter for property type. Pin the map so the visualisation does not change when changing different filter which can be distracting for the readers.</p>
+<p><img src="images/image-1338293060.png" class="img-fluid" width="500"></p>
+<p>Final visualisation for Property Resale Price in Singapore:</p>
+<p><img src="images/image-1905685578.png" class="img-fluid" width="500"></p>
+</section>
+<section id="in-class-exercise-geospatial" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise-geospatial">In Class Exercise (Geospatial)</h2>
+<p>We can make use of <a href="https://data.gov.sg/dataset/master-plan-2019-subzone-boundary-no-sea">data.gov.sg</a> to find geospatial data of Singapore</p>
+<p><img src="images/image-935857065.png" class="img-fluid" width="500"></p>
+<p>We will be adding the files ‘respopagesextod2022’ and ‘master-plan-2019-subzone-boundary-no-sea-geojson’ for this exercise. Join using the</p>
+<p><img src="images/image-1829525545.png" width="500" height="280"></p>
+<p>If the subzone naming is not corrected, there would not be any differentiation in the map. This is because the naming mismatch due to case sensitive. We will resolve this by going to the data source type and change the naming of subzone using formula.</p>
+<p><img src="images/image-1946394972.png" class="img-fluid" width="500"></p>
+<p>Increasing the population size classification by double clicking on the legend. Increase the number of steps to the desired number (in this case, we choose 10).</p>
+<p><img src="images/image-1636291056.png" class="img-fluid" width="500"></p>
+<p>The final visualisation for Population size in Singapore:</p>
+<p><img src="images/image-905414208.png" class="img-fluid" width="500"></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
