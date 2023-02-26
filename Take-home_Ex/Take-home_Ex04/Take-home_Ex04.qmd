@@ -527,8 +527,8 @@ ggplot(country, aes(x = imports/1000, y = exports/1000,
 
 From the animated bubbled chart, we observed that:
 
-1.  Across 2020 to 2022, exports to Hong Kong and Indonesia remained relatively constant while the imports had increased over that period.
-2.  During mid 2022, it can be observed United States, Malaysia and China had larger fluctuations in different direction.
+1.  Across 2020 to 2022, imports to Hong Kong and Indonesia remained relatively constant while the exports had increased over that period.
+2.  During mid 2022, it can be observed exports and imports with United States, Malaysia and China had larger fluctuations in different direction.
 
 ### 4.2 Impact of Global Events
 
@@ -615,7 +615,8 @@ p_braid1 <-
        x = "", y = "$ (Thousand Dollars)", color = "Values") + 
   theme(title = element_text(size = 8), axis.title = element_text(size = 8),
         axis.text.x = element_text(angle=90, vjust=1, hjust=1),
-        legend.title=element_text(size=8)) +
+        legend.title=element_text(size=8),
+        legend.position ="bottom") +
   scale_x_date(expand=c(0,0), date_breaks = "3 month", date_labels = "%b%y")
 
 #Plotting the braid ribbons chart for USA
