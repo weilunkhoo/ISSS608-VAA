@@ -1,0 +1,295 @@
+---
+title: "In-Class Excerise 8"
+description: Visualising and Analysing Network Data
+date: "March 11, 2023"
+date-modified: "`r Sys.Date()`"
+format: html
+execute: 
+  echo: true
+  eval: true
+  warning: false
+editor: visual
+---
+
+## Lecture 8
+
+Basic concepts
+
+-   Vertices are the points or nodes in a graph. In a complete graph, the number of vertices is denoted by n, and each vertex is labeled from 1 to n.
+
+-   Edges, on the other hand, are the lines connecting the vertices in a graph. In a complete graph with n vertices, each vertex is connected to n-1 other vertices, since it is not connected to itself.
+
+-   Each edge in a complete graph can be undirected, meaning that it goes both ways between the vertices it connects.
+
+Bipartite Graph
+
+-   The set (U and V) does not need to be person.
+
+-   Gather if there are similarities among the entities in the set.
+
+Multimodel Graph
+
+-   It is a graph where there are distinct groups of vertices that are more densely connected to each other than to vertices in other groups.
+
+-   Multimodal graphs can have different types of edges, including directed or undirected edges, weighted or unweighted edges, and signed or unsigned edges. The type of edge can affect the analysis and interpretation of the graph
+
+-   E.g. supply chain. Does not only apply to social media
+
+Graph Visualiation
+
+-   To plot this on R, ggplot and ggtreemap are required.
+
+R Data Model
+
+-   **network**: store relational data while **igraph**: have its own graph object
+
+-   **tidygraph**: latest graph data model. organise table into tbl_graph data format
+
+## Hands-On Exercise 8
+
+#### Installing and launching R packages
+
+```{r}
+pacman::p_load(igraph, tidygraph, ggraph, 
+               visNetwork, lubridate, clock,
+               tidyverse, graphlayouts)
+```
+
+#### Import dataset for GAStech_nodes and GAStech_edges
+
+```{r, message=FALSE}
+GAStech_nodes <- read_csv("data/GAStech_email_node.csv")
+GAStech_edges <- read_csv("data/GAStech_email_edge-v2.csv")
+```
+
+Data review:
+
+-   GAStech_edge: SentDate is currently in character instead of timedate data type.
+
+#### Data Preparation
+
+Converting SentDate into dmy field:
+
+-   Second mutate code needs to run correctly for the third code to run correctly.
+
+```{r}
+GAStech_edges <- GAStech_edges %>%
+  mutate(SendDate = dmy(SentDate)) %>%
+  mutate(Weekday = wday(SentDate,
+                        label = TRUE,
+                        abbr = FALSE))
+```
+
+Wrangling attributes
+
+-   Summarize using same target, source and weekday using Groupby
+
+-   Filter away weight \>1
+
+```{r}
+GAStech_edges_aggregated <- GAStech_edges %>%
+  filter(MainSubject == "Work related") %>%
+  group_by(source, target, Weekday) %>%
+    summarise(Weight = n()) %>%
+  filter(source!=target) %>%
+  filter(Weight > 1) %>%
+  ungroup()
+```
+
+#### Plotting the graph
+
+-   Need to state directed or non-directed
+
+```{r}
+GAStech_graph <- tbl_graph(nodes = GAStech_nodes,
+                           edges = GAStech_edges_aggregated, 
+                           directed = TRUE)
+```
+
+Changing the active object
+
+-   Default is node - Tinybird got two tables so important to choose the right one
+
+```{r}
+GAStech_graph %>%
+  activate(edges) %>%
+  arrange(desc(Weight))
+```
+
+Plotting Network Data with ggraph
+
+-   many available igraph layouts that can be utilised
+
+-   when working with ggraph, no need to specify the layout type.
+
+```{r}
+g <- ggraph(GAStech_graph) + 
+  geom_edge_link(aes()) +
+  geom_node_point(aes())
+
+g + theme_graph()
+```
+
+Changing color of the plot using theme_graph
+
+```{r}
+g <- ggraph(GAStech_graph) + 
+  geom_edge_link(aes(colour = 'grey50')) +
+  geom_node_point(aes(colour = 'grey40'))
+
+g + theme_graph(background = 'grey10',
+                text_colour = 'white')
+```
+
+#### **Fruchterman and Reingold layout**
+
+Aesthetic (aes\_ is the visual attribute that can be changed
+
+```{r}
+g <- ggraph(GAStech_graph, 
+            layout = "fr") +
+  geom_edge_link(aes()) +
+  geom_node_point(aes())
+
+g + theme_graph()
+```
+
+-   node_point looks for attribute in the node table (weight)
+
+-   color = Department allows more color to be used instead of having a greyscale
+
+```{r}
+g <- ggraph(GAStech_graph, 
+            layout = "nicely") + 
+  geom_edge_link(aes()) +
+  geom_node_point(aes(colour = Department, 
+                      size = 3))
+
+g + theme_graph()
+```
+
+#### Creating facet graphs
+
+-   Using facet_edge and facet_node will create different charts depending your goals
+
+For facet_edges
+
+```{r}
+set_graph_style()
+
+g <- ggraph(GAStech_graph, 
+            layout = "nicely") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+  scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = Department), 
+                  size = 2)
+
+g + facet_edges(~Weekday)
+```
+
+#### Incorporating statistical measure
+
+-   centrality measure comes from igraph model
+
+-   There is no changes to the node in GAStech_graph - due to pipe hence no new field added to GAStech_graph
+
+```{r}
+g <- GAStech_graph %>%
+  mutate(betweenness_centrality = centrality_betweenness()) %>%
+  ggraph(layout = "fr") + 
+  geom_edge_link(aes(width=Weight), 
+                 alpha=0.2) +
+  scale_edge_width(range = c(0.1, 5)) +
+  geom_node_point(aes(colour = Department,
+            size=betweenness_centrality))
+g + theme_graph()
+```
+
+#### **visNetwork**
+
+-   naming had to be fixed for features
+
+Data Preparation
+
+-   restructure of table required - leftjoin and reorganisation of GAStech_edge table
+
+-   GAStech_edges_aggregated table only has from, to and weight
+
+```{r}
+GAStech_edges_aggregated <- GAStech_edges %>%
+  left_join(GAStech_nodes, by = c("sourceLabel" = "label")) %>%
+  rename(from = id) %>%
+  left_join(GAStech_nodes, by = c("targetLabel" = "label")) %>%
+  rename(to = id) %>%
+  filter(MainSubject == "Work related") %>%
+  group_by(from, to) %>%
+    summarise(weight = n()) %>%
+  filter(from!=to) %>%
+  filter(weight > 1) %>%
+  ungroup()
+```
+
+Plot interactive network graph with layout
+
+```{r}
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated) %>%
+  visIgraphLayout(layout = "layout_with_fr") 
+```
+
+Working with visual attributes - Nodes
+
+-   unique color to each category in the group field
+
+-   setting random seed for reproducible results
+
+```{r}
+GAStech_nodes <- GAStech_nodes %>%
+  rename(group = Department)
+```
+
+-   able to identify the categories without specfying
+
+```{r}
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated) %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
+```
+
+Working with visual attributes - Edge
+
+-   changes from straight line to curve lines
+
+```{r}
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated) %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visEdges(arrows = "to", 
+           smooth = list(enabled = TRUE, 
+                         type = "curvedCW")) %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
+```
+
+Interactivity
+
+-   *visOptions()* is used to incorporate interactivity features in the data visualisation.
+
+-   The argument *highlightNearest* highlights nearest when clicking a node.
+
+-   The argument *nodesIdSelection* adds an id node selection creating an HTML select element.
+
+-   select by id gives the list of names inside the field
+
+```{r}
+visNetwork(GAStech_nodes,
+           GAStech_edges_aggregated) %>%
+  visIgraphLayout(layout = "layout_with_fr") %>%
+  visOptions(highlightNearest = TRUE,
+             nodesIdSelection = TRUE) %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
+```
